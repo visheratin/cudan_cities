@@ -86,7 +86,7 @@ def complex_data():
      date = str(sl_date.year) + '-' + str(sl_date.month)
      
      st.pydeck_chart(pdk.Deck(
-         map_style='mapbox://styles/mapbox/light-v9',
+         map_style='mapbox://styles/mapbox/dark-v9',
          initial_view_state=pdk.ViewState(
              latitude=coordinates[cities[option]][0],
              longitude=coordinates[cities[option]][1],
@@ -104,13 +104,22 @@ def complex_data():
                 extruded=False,
                 color_aggregation="SUM",
                 get_color_weight=date,
-                color_range=[[241,238,246],[212,185,218],[201,148,199],
-                             [223,101,176],[221,28,119],[152,0,67]]
+                color_range=app_utils.create_colors_from_hex(['#ffffb2','#fed976','#feb24c','#fd8d3c','#f03b20','#bd0026'])
+                #[[241,238,246],[212,185,218],[201,148,199],
+                 #            [223,101,176],[221,28,119],[152,0,67]]
 
              ),
     
          ],
      ))
+     
+     st.bar_chart(map_data[['2017-1', '2017-2', '2017-3', '2017-4', '2017-5', '2017-6', '2017-7',
+       '2017-8', '2017-9', '2017-10', '2017-11', '2017-12', '2018-1', '2018-2',
+       '2018-3', '2018-4', '2018-5', '2018-6', '2018-7', '2018-8', '2018-9',
+       '2018-10', '2018-11', '2018-12', '2019-1', '2019-2', '2019-3', '2019-4',
+       '2019-5', '2019-6', '2019-7', '2019-8', '2019-9', '2019-10', '2019-11',
+       '2019-12', '2020-1', '2020-2', '2020-3', '2020-4', '2020-5', '2020-6',
+       '2020-7', '2020-8', '2020-9', '2020-10', '2020-11', '2020-12']].sum(axis = 1))
 
 if __name__ == "__main__":
     main()
