@@ -8,12 +8,14 @@ import streamlit as st
 import pandas as pd
 import pydeck as pdk
 import app_utils
+import plotly.express as px
 
 folder = 'data/'   
 cities = {'London, UK': 'london', 
       'Saint Petersburg, Russia': 'spb',
       'Vienna, Austria': 'wienna', 
-      'New York City, USA': 'new-york', } #'tokyo'
+      'New York City, USA': 'new-york',
+      'Kyoto, Japan': 'kyoto'} #'tokyo'
 
 coordinates = {'london':(51.507222, -0.1275), 
           'spb':(59.9375, 30.308611),
@@ -113,13 +115,14 @@ def complex_data():
          ],
      ))
      
-     st.bar_chart(map_data[['2017-1', '2017-2', '2017-3', '2017-4', '2017-5', '2017-6', '2017-7',
+     fig = px.bar(map_data[['2017-1', '2017-2', '2017-3', '2017-4', '2017-5', '2017-6', '2017-7',
        '2017-8', '2017-9', '2017-10', '2017-11', '2017-12', '2018-1', '2018-2',
        '2018-3', '2018-4', '2018-5', '2018-6', '2018-7', '2018-8', '2018-9',
        '2018-10', '2018-11', '2018-12', '2019-1', '2019-2', '2019-3', '2019-4',
        '2019-5', '2019-6', '2019-7', '2019-8', '2019-9', '2019-10', '2019-11',
        '2019-12', '2020-1', '2020-2', '2020-3', '2020-4', '2020-5', '2020-6',
-       '2020-7', '2020-8', '2020-9', '2020-10', '2020-11', '2020-12']].sum(axis = 1))
+       '2020-7', '2020-8', '2020-9', '2020-10', '2020-11', '2020-12']].sum(axis = 0), )
+     st.plotly_chart(fig)
 
 if __name__ == "__main__":
     main()
