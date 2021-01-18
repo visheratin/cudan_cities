@@ -19,7 +19,7 @@ def hex_to_rgb(color_string):
 
 def date_range():
     start = datetime.datetime(2017, 1, 1)
-    end = datetime.datetime(2020, 1, 1)
+    end = datetime.datetime(2020, 12, 1)
     
     rang = [start]
     while start < end:

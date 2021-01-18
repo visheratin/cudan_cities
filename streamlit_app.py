@@ -12,17 +12,21 @@ import plotly.express as px
 
 folder = 'data/'   
 cities = {'London, UK': 'london', 
+          'Moscow, Russia': 'moscow',
       'Saint Petersburg, Russia': 'spb',
       'Vienna, Austria': 'wienna', 
       'New York City, USA': 'new-york',
-      'Kyoto, Japan': 'kyoto'} #'tokyo'
+      'Tokyo, Japan':'tokyo',
+      'Kyoto, Japan': 'kyoto',
+      } #
 
 coordinates = {'london':(51.507222, -0.1275), 
           'spb':(59.9375, 30.308611),
           'wienna':(48.2, 16.366667), 
           'new-york':(40.71274, -74.005974),
           'kyoto':(35.0078, 135.7502),
-          'tokyo':(),
+          'tokyo':(35.689722, 139.692222),
+          'moscow':(55.755833, 37.617222),
           }
 
           
@@ -98,7 +102,7 @@ def complex_data():
          layers=[
              pdk.Layer(
                 'HexagonLayer',
-                data= filter_data(map_data, date, 5),
+                data= filter_data(map_data, date, 1),
                get_position='[lon, lat]',
                 radius=200,
                 elevation_scale=0,
@@ -122,6 +126,13 @@ def complex_data():
        '2019-5', '2019-6', '2019-7', '2019-8', '2019-9', '2019-10', '2019-11',
        '2019-12', '2020-1', '2020-2', '2020-3', '2020-4', '2020-5', '2020-6',
        '2020-7', '2020-8', '2020-9', '2020-10', '2020-11', '2020-12']].sum(axis = 0), )
+     fig.add_shape(
+            type='line', line=dict(dash='dash'),
+            x0='2017-1', x1='2020-12', y0=0, y1=1
+        )
+     fig.update_xaxes(title_text='months')
+     fig.update_yaxes(title_text='total posts')
+     fig.update_layout(showlegend=False)
      st.plotly_chart(fig)
 
 if __name__ == "__main__":
